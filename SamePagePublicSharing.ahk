@@ -14,9 +14,9 @@ Team_Page_Name = ''
 ;===================================================
 ;==== Main Area ====================================
 ;===================================================
-;URL = "https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599581876390291951"
 
-Array := ["https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582628009568906", "https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582679549176464"]
+;Please replace  Related URLs of SamePage to make them Public.
+Array := ["SAME_PAGE_TEAM_PAGE_URL_1", "SAME_PAGE_TEAM_PAGE_URL_2"]
 
 ;Array.Push(URL)
 

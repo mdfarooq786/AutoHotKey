@@ -11,9 +11,9 @@ Close_Window_Title = ''
 Team_Page_Name = ''
 
 
-;==================================================
-;======= Testing ==================================
-;==================================================
+;===================================================
+;==== Main Area ====================================
+;===================================================
 Array := ["https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582628009568906", "https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582679549176464"]
 
 Gui, Add, Text,, Share All SamePage - Pages and Copy the URLs in .\images\URL.txt
@@ -27,18 +27,16 @@ GuiClose:
 ExitApp
 
 ButtonPublicSharingOn:
-Gui, Submit  ; Save the input from the user to each control's associated variable.
+;Gui, Submit  ; Save the input from the user to each control's associated variable.
 for index, element in Array
 {
 	PublicSharingOn(element)
 }
-MsgBox, Public Sharing On
-ExitApp
-
-
+MsgBox, Done - Public Sharing On
+;ExitApp
 
 ButtonPublicSharingOff:
-Gui, Submit
+;Gui, Submit ; Save the input from the user to each control's associated variable.
 for index, element in Array
 {
 	;PublicSharingOn(element)
@@ -46,30 +44,8 @@ for index, element in Array
     ;MsgBox % "Element number " . index . " is " . element
 	;ExitApp
 }
-MsgBox, Do Public Sharing Off
-
-ExitApp
-
-;==================================================
-;======= Testing ==================================
-;==================================================
-
-;===================================================
-;==== Main Area ====================================
-;===================================================
-
-Array := ["https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582628009568906", "https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582679549176464"]
-
-;Array.Push(URL)
-
-for index, element in Array
-{
-	;PublicSharingOn(element)
-	PublicSharingOff(element)
-    ;MsgBox % "Element number " . index . " is " . element
-	;ExitApp
-}
-
+MsgBox, Done - Public Sharing Off
+;ExitApp
 
 ;===================================================
 ;==== Public Sharing On ============================

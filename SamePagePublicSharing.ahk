@@ -11,6 +11,49 @@ Close_Window_Title = ''
 Team_Page_Name = ''
 
 
+;==================================================
+;======= Testing ==================================
+;==================================================
+Array := ["https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582628009568906", "https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/page-599582679549176464"]
+
+Gui, Add, Text,, Share All SamePage - Pages and Copy the URLs in .\images\URL.txt
+Gui, Add, Button, default, Public Sharing On  ; The label ButtonPublicSharingOn (if it exists) will be run when the button is pressed.
+Gui, Add, Text,, Un-Share All SamePage - Pages.
+Gui, Add, Button, default, Public Sharing Off ; The label ButtonPublicSharingOff (if it exists) will be run when the button is pressed.
+Gui, Show, w500 h200 , SamePage - Public Sharing On/Off
+return  ; End of auto-execute section. The script is idle until the user does something.
+
+GuiClose:
+ExitApp
+
+ButtonPublicSharingOn:
+Gui, Submit  ; Save the input from the user to each control's associated variable.
+for index, element in Array
+{
+	PublicSharingOn(element)
+}
+MsgBox, Public Sharing On
+ExitApp
+
+
+
+ButtonPublicSharingOff:
+Gui, Submit
+for index, element in Array
+{
+	;PublicSharingOn(element)
+	PublicSharingOff(element)
+    ;MsgBox % "Element number " . index . " is " . element
+	;ExitApp
+}
+MsgBox, Do Public Sharing Off
+
+ExitApp
+
+;==================================================
+;======= Testing ==================================
+;==================================================
+
 ;===================================================
 ;==== Main Area ====================================
 ;===================================================

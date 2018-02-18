@@ -21,17 +21,15 @@ Array := ["https://samepage.io/app/#!/0f86323939f7cf92b91dba5b86926961fdae11e8/p
 
 for index, element in Array
 {
-	PublicSharingOn(element)
+	;PublicSharingOn(element)
+	PublicSharingOff(element)
     ;MsgBox % "Element number " . index . " is " . element
 	;ExitApp
 }
 
 
-
-
-
 ;===================================================
-;==== Calling Main Function=========================
+;==== Public Sharing On ============================
 ;===================================================
 PublicSharingOn(URL)
 {
@@ -94,7 +92,7 @@ PublicSharingOn(URL)
 	sleep 2000
 
 	;===================================================
-	;====If already Public Shared Exit=========
+	;====If already Public Shared Exit==================
 	;===================================================
 
 	Path = %A_WorkingDir%\images\alreadyshared.png
@@ -250,6 +248,107 @@ CopySharedLink(Close_Window_Title,Current_Window_Title,Team_Page_Name)
 
 		;Save URL in File 'URLs.txt'
 		FileAppend, %Team_Page_Name%|%Current_Window_Title%|%Clipboard%`n, %A_WorkingDir%\images\URLs.txt
+	}
+	else
+	{
+		ExitApp
+	}
+
+	;================================
+	;Search and Move to Close Image
+	;================================
+
+	Path = %A_WorkingDir%\images\close.png
+
+	imageFound := FoundImage(Path,X,Y)
+
+	if imageFound = true
+	{
+		MouseMove, X, Y, 10
+		MouseClick, left, X+5, Y+5
+	}
+	else
+	{
+		ExitApp
+	}
+
+	;WinGetTitle, Close_Window_Title, A
+	sleep 2000
+
+	IfWinExist, %Close_Window_Title%
+	{
+		WinActivate, %Close_Window_Title%
+		Send {ctrl down}w{ctrl up}
+	}
+}
+
+;===================================================
+;==== Public Sharing off ===========================
+;===================================================
+PublicSharingOff(URL)
+{
+	;===================================================
+	;====Run Chrome in Maximize Mode and Open URL=======
+	;===================================================
+	Run chrome.exe %URL%
+	WinMaximize ahk_exe chrome.exe
+
+	;Wait a bit
+	sleep 5000
+
+	;===================================================
+	;====If already Public Shared Exit==================
+	;===================================================
+
+	Path = %A_WorkingDir%\images\alreadyshared.png
+	imageFound := FoundPublicShareImage(Path,X,Y)
+
+	;Get Current Window Title for saving along URL
+	WinGetTitle, Current_Window_Title, A
+	Close_Window_Title = %Current_Window_Title%
+
+	if imageFound = true
+	{
+		;TODO: Just Save Public URL
+		MouseMove, X, Y, 10
+		MouseClick, left, X+10, Y+10
+		sleep 1000
+
+		;Unshare and Close Window
+		UnSharedAndClose(Close_Window_Title)
+		
+		;Goto, MyLabel
+	}
+	else
+	{
+		IfWinExist, %Close_Window_Title%
+		{
+			WinActivate, %Close_Window_Title%
+			Send {ctrl down}w{ctrl up}
+		}
+
+	}
+
+	return
+}
+
+UnSharedAndClose(Close_Window_Title)
+{
+	;================================
+	;Search and Move Shared Image
+	;================================
+
+	;Wait a bit
+	sleep 1000
+
+	Path = %A_WorkingDir%\images\publicshareon.png
+
+	imageFound := FoundImage(Path,X,Y)
+
+	if imageFound = true
+	{
+		MouseMove, X, Y, 10
+		MouseClick, left, X+10, Y+10
 	}
 	else
 	{

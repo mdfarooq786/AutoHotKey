@@ -1,10 +1,11 @@
 ;===================================================
 ;====Global Variable Definition=======
 ;===================================================
-scrolcount := 0
 
+scrolcount := 0
 X = 0
 Y = 0
+
 Path = %A_WorkingDir%\images\
 Current_Window_Title = ''
 Close_Window_Title = ''

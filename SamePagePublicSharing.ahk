@@ -33,7 +33,7 @@ for index, element in Array
 	PublicSharingOn(element)
 }
 MsgBox, Done - Public Sharing On
-;ExitApp
+return
 
 ButtonPublicSharingOff:
 ;Gui, Submit ; Save the input from the user to each control's associated variable.
@@ -45,7 +45,7 @@ for index, element in Array
 	;ExitApp
 }
 MsgBox, Done - Public Sharing Off
-;ExitApp
+return
 
 ;===================================================
 ;==== Public Sharing On ============================
@@ -132,11 +132,6 @@ PublicSharingOn(URL)
 		
 		return
 		;Goto, MyLabel
-	}
-	else
-	{
-		MsgBox, 'alreadyshared' Image not found
-		ExitApp
 	}
 
 

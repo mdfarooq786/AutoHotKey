@@ -133,6 +133,11 @@ PublicSharingOn(URL)
 		return
 		;Goto, MyLabel
 	}
+	else
+	{
+		MsgBox, 'alreadyshared' Image not found
+		ExitApp
+	}
 
 
 	;===================================================

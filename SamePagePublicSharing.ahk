@@ -10,6 +10,7 @@ Path = %A_WorkingDir%\images\
 Current_Window_Title = ''
 Close_Window_Title = ''
 Team_Page_Name = ''
+main_gui_title = SamePage - Public Sharing On/Off
 
 
 ;===================================================
@@ -21,7 +22,7 @@ Gui, Add, Text,, Share All SamePage - Pages and Copy the URLs in .\images\URL.tx
 Gui, Add, Button, default, Public Sharing On  ; The label ButtonPublicSharingOn (if it exists) will be run when the button is pressed.
 Gui, Add, Text,, Un-Share All SamePage - Pages.
 Gui, Add, Button, default, Public Sharing Off ; The label ButtonPublicSharingOff (if it exists) will be run when the button is pressed.
-Gui, Show, w500 h200 , SamePage - Public Sharing On/Off
+Gui, Show, w500 h200 , %main_gui_title%
 return  ; End of auto-execute section. The script is idle until the user does something.
 
 GuiClose:
@@ -34,6 +35,9 @@ for index, element in Array
 	PublicSharingOn(element)
 }
 MsgBox, Done - Public Sharing On
+
+;Activate Main Window
+ActivateMainWindow(main_gui_title)
 return
 
 ButtonPublicSharingOff:
@@ -46,6 +50,8 @@ for index, element in Array
 	;ExitApp
 }
 MsgBox, Done - Public Sharing Off
+;Activate Main Window
+ActivateMainWindow(main_gui_title)
 return
 
 ;===================================================
@@ -446,4 +452,12 @@ FoundPublicShareImage(Path, ByRef X, ByRef Y)
 	}
 
 	return result
+}
+
+ActivateMainWindow(main_window_title)
+{
+	IfWinExist, %main_window_title%
+    	WinActivate ; use the window found above
+	else
+    	MsgBox, %main_window_title% Window not found.
 }
